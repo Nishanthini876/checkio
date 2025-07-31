@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔍 CheckiO Coding Challenge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🧠 Welcome to the CheckiO Coding Challenge! 🧠</h1>
+    <p><i>"Think logically, code wisely, unlock the final flag! 🔐🚩"</i></p>
+  </header>
+
+  <main>
+    <div class="guess-box">
+      <h2>🔢 Sum of Digits</h2>
+      <form onsubmit="checkSumFunction(); return false;">
+        <label for="codeInput">💡 Fill in the missing logic inside the function:</label>
+        <pre><code>def sum_of_digits(number):</code></pre>
+        <textarea id="codeInput" rows="4" placeholder="🔧 Your logic here (loop, str(), sum, etc.)"></textarea>
+        <pre><code>print(sum_of_digits(12345))</code></pre>
+
+        <input type="text" id="outputGuess" name="outputGuess" placeholder="What is the output?" />
+        <br>
+        <input type="submit" value="Submit Final Flag" />
+      </form>
+
+      <div id="reveal" class="reveal-box">
+        <h3>🎉 Final Flag Box</h3>
+        <p id="message">🚪 Awaiting your wisdom... 🧠</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function checkSumFunction() {
+      const codeInput = document.getElementById("codeInput").value.trim();
+      const outputGuess = document.getElementById("outputGuess").value.trim();
+      const reveal = document.getElementById("reveal");
+      const message = document.getElementById("message");
+
+      reveal.style.display = "block";
+
+      const isCodeCorrect =
+        codeInput.includes('return sum(int(d) for d in str(number))');
+      const isOutputCorrect = outputGuess === "15";
+
+      if (isCodeCorrect && isOutputCorrect) {
+
+          message.innerHTML =
+  '✅ Brilliant! You cracked the cipher! <br><strong>FLAG{vowel_counter_master}</strong> <a href="lock2.html" style="text-decoration:none;">🔓</a> 🎉';
+
+      } else {
+        message.innerHTML = `❌ Hmm... something doesn't match. Either the logic or output "<b>${outputGuess}</b>" is off. Try again! 🔄`;
+      }
+    }
+  </script>
+</body>
+</html>

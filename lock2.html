@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔍 Final CheckiO Mystery Challenge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🧠 Final CheckiO Coding Challenge! 🧠</h1>
+    <p><i>"Almost there... one more puzzle to unlock the ultimate flag! 🔐🗝️"</i></p>
+  </header>
+
+  <main>
+    <div class="guess-box">
+      <h2>🧮 Product of Digits</h2>
+      <form onsubmit="checkProductFunction(); return false;">
+        <label for="codeInput">💡 Fill in the missing logic inside the function:</label>
+        <pre><code>def product_of_digits(number):</code></pre>
+        <textarea id="codeInput" rows="4" placeholder="🔧 Your logic here (loop, math, etc.)"></textarea>
+        <pre><code>print(product_of_digits(1234))</code></pre>
+
+        <input type="text" id="outputGuess" name="outputGuess" placeholder="What is the output?" />
+        <br>
+        <input type="submit" value="Submit Final Flag" />
+      </form>
+
+      <div id="reveal" class="reveal-box">
+        <h3>🎉 Final Flag Box</h3>
+        <p id="message">🚪 Awaiting your final answer... 🧠</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function checkProductFunction() {
+      const codeInput = document.getElementById("codeInput").value.trim();
+      const outputGuess = document.getElementById("outputGuess").value.trim();
+      const reveal = document.getElementById("reveal");
+      const message = document.getElementById("message");
+
+      reveal.style.display = "block";
+
+      // Expected: product of 1*2*3*4 = 24
+      const correctLogic =
+        codeInput.includes('product = 1') &&
+        codeInput.includes('for d in str(number):') &&
+        codeInput.includes('product *= int(d)') &&
+        codeInput.includes('return product');
+
+      const isOutputCorrect = outputGuess === "24";
+
+      if (correctLogic && isOutputCorrect) {
+        message.innerHTML =
+          '🏁 You’ve done it! Final flag unlocked! <br><strong>FLAG{checkio_champ_complete}</strong> 🏆🎊';
+      } else {
+        message.innerHTML = `❌ Hmm... something doesn't match. Either the logic or output "<b>${outputGuess}</b>" is off. Try again! 🔄`;
+      }
+    }
+  </script>
+</body>
+</html>
